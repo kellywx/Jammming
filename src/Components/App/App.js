@@ -2,6 +2,9 @@ import React, {useState} from "react";
 import styles from "./App.module.css";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
+import SearchBar from "../SearchBar/SearchBar";
+import {Spotify} from "../../util/Spotify";
+
 function App () {
 
   const [searchResults, setSearchResults] = useState([
@@ -72,6 +75,18 @@ function App () {
     setSearchResults(searchResults.concat(track));
   }
 
+  function updatePlaylistName(name) {
+    setPlaylistName(name);
+  }
+
+  function savePlaylist() {
+    const trackURIs = playlistTracks.map(t => t.uri);
+  }
+
+  function search(term) {
+    Spotify.search(term).then(result => setSearchResults(result));
+  }
+
 
   return (
    <div>
@@ -79,14 +94,15 @@ function App () {
         Ja<span className={styles.highlight}>mmm</span>ing
       </h1>
       <div className={styles.App}>
-      {/* <!-- Add a SearchBar component --> */}
+      
+      <SearchBar onSearch = {search}/>
           
         <div className={styles['App-playlist']}>
           {/* <!-- Add a SearchResults component here --> */}
 
           <SearchResults userSearchResults={searchResults} onAdd={addTrack}/>
-          {/* <!-- Add a Playlist component --> */}
-          <Playlist playlistName = {playlistName} playlistTracks = {playlistTracks} onRemove = {removeTrack} afterRemove = {addAfterRemove}/>
+
+          <Playlist playlistName = {playlistName} playlistTracks = {playlistTracks} onRemove = {removeTrack} afterRemove = {addAfterRemove} onNameChange={updatePlaylistName} onSave={savePlaylist}/>
         </div>
       </div>
     </div>
