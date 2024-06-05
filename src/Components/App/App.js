@@ -52,8 +52,9 @@ function App () {
     // const existingTrack = playlistTracks.find(t => t.id === track.id);
     /* <!-- checks to see if track is already in playlist or not --> */
     const newTrack = playlistTracks.concat(track);
-    setPlaylistTracks(newTrack);
-    setSearchResults(searchResults.filter(t => t.id !== track.id ));
+      setPlaylistTracks(newTrack);
+      setSearchResults(searchResults.filter(t => t.id !== track.id ));
+    
 
     // if (existingTrack) {
     //   console.log("Track already exists");
@@ -61,6 +62,14 @@ function App () {
     //   setPlaylistTracks(newTrack);
     //   setSearchResults(searchResults.filter(t => t.id !== track.id ));
     // }
+  }
+
+  function removeTrack(track) {
+    setPlaylistTracks(playlistTracks.filter(t => t.id !== track.id));
+  }
+
+  function addAfterRemove(track) {
+    setSearchResults(searchResults.concat(track));
   }
 
 
@@ -77,7 +86,7 @@ function App () {
 
           <SearchResults userSearchResults={searchResults} onAdd={addTrack}/>
           {/* <!-- Add a Playlist component --> */}
-          <Playlist playlistName = {playlistName} playlistTracks = {playlistTracks}/>
+          <Playlist playlistName = {playlistName} playlistTracks = {playlistTracks} onRemove = {removeTrack} afterRemove = {addAfterRemove}/>
         </div>
       </div>
     </div>

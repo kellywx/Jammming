@@ -8,7 +8,7 @@ function Tracklist (props) {
         {/* <!-- You will add a map method that renders a set of Track components  --> */}
         {props.userSearchResults.map(track => {
           return (
-            <Track track={track} id={track.id} isRemoval = {props.isRemoval} onAdd={props.onAdd}/>
+            <Track track={track} id={track.id} isRemoval = {props.isRemoval} onAdd={props.onAdd} onRemove={props.onRemove} afterRemove = {props.afterRemove}/>
           )
         })}
       </div>

@@ -9,7 +9,7 @@ function Track(props) {
       );
     } else {
       return (
-        <button className={styles['Track-action']}>-</button>
+        <button className={styles['Track-action']} onClick={passTrackToRemove}>-</button>
       )
     }
   }
@@ -17,7 +17,12 @@ function Track(props) {
   function passTrack() {
     props.onAdd(props.track);
     /* adds track to playlist */
-  };
+  }
+
+  function passTrackToRemove() {
+    props.onRemove(props.track);
+    props.afterRemove(props.track);
+  }
   return (
     <div className={styles.Track}>
       <div className={styles['Track-information']}>
