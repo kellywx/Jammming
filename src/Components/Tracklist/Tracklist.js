@@ -8,7 +8,7 @@ function Tracklist (props) {
         {/* <!-- You will add a map method that renders a set of Track components  --> */}
         {props.userSearchResults.map(track => {
           return (
-            <Track />
+            <Track track={track} id={track.id}/>
           )
         })}
       </div>

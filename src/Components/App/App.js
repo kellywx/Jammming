@@ -16,6 +16,12 @@ function App () {
       artist: "Artist 2",
       album: "Album 2",
       id: 2,
+    },
+    {
+      name: "Name 3",
+      artist: "Artist 3",
+      album: "Album 3",
+      id: 1,
     }
   ]);
     return (
