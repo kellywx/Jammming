@@ -1,7 +1,7 @@
 let accessToken = "";
 
 const clientID = "37f7d0b2e37f44dba82fbb03b24c5781";
-const redirectURL = "http://localhost:3000/";
+const redirectURL = "https://kellysjammming.surge.sh";
 
 const Spotify = {
     // getAccessToken will get user's access token so they can make requests to Spotify API
