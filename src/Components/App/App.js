@@ -7,8 +7,8 @@ import {Spotify} from "../../util/Spotify";
 
 function App () {
 
-  const [searchResults, setSearchResults] = useState([
-    {
+  const [searchResults, setSearchResults] = useState(
+    [{
       name: "Name 1",
       artist: "Artist 1",
       album: "Album 1",
@@ -25,8 +25,8 @@ function App () {
       artist: "Artist 3",
       album: "Album 3",
       id: 6,
-    }
-  ]);
+    }]
+  );
 
   const [playlistName, setPlaylistName] = useState("Playlist Name");
 
@@ -81,10 +81,17 @@ function App () {
 
   function savePlaylist() {
     const trackURIs = playlistTracks.map(t => t.uri);
+    Spotify.savePlaylist(playlistName, trackURIs).then(() => {
+      setPlaylistName("New Playlist");
+      setPlaylistTracks([]);
+    });
   }
 
   function search(term) {
-    Spotify.search(term).then(result => setSearchResults(result));
+    if (term.length === 0) {
+      alert("Please enter a search word");
+    } else {
+      Spotify.search(term).then(result => setSearchResults(result));}
   }
 
 
